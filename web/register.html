@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Register with Cab Services</title>
+
+        <style>
+            #form1{
+                margin-top:10%;
+                margin-left: 20%;
+                margin-right: 20%;
+                padding: 5%;
+                border: 2px dashed red;
+            }
+        </style>
+        <script type="text/javascript">
+            function validateForm() {
+                var x = document.forms["regF"]["username"].value;
+                if (x == null || x == "") {
+                    alert("Name must be filled out");
+                    return false;
+                }
+                var y = document.forms["regF"]["password"].value;
+                if (y == null || y == "") {
+                    alert("Password must be filled out");
+                    return false;
+                }
+                var z = document.forms["regF"]["cpassword"].value;
+                if ( y !== z) {
+                    alert("Passwords do not match");
+                    return false;
+                }
+            }
+            function checkExist(){
+                var xmlhttp = new XMLHttpRequest();
+                var username = document.forms["regF"]["username"].value;
+                var url = "exist.jsp?username=" + username;
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                        document.getElementById("isE").innerHTML = xmlhttp.responseText;
+                    }
+                    
+                };
+                try{
+                xmlhttp.open("GET",url,true);
+                xmlhttp.send();
+            }catch(e){alert("unable to connect to server");
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <h1 align="center" style="font-family: 'Lobster', cursive">Cab Sharing Service</h1>
+        <div id="form1">
+            <form action="register.jsp" onsubmit="return validateForm()" method="post"  name="regF">
+                Enter your username:<input type="text" name="username" onblur="checkExist()"/><span id="isE"></span><br><br>
+                Enter your email:<input type="email" name="email"/><br><br>
+                Enter your password:<input type="password" name="password"/><br><br>
+                Confirm your password:<input type="password" name="cpassword"/><br><br>
+                <input type="submit" value="Register" /><br>
+            </form>
+        </div>
+    </body>
+</html>

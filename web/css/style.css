@@ -1,0 +1,19 @@
+body{
+    background-color: aliceblue;
+}
+h1{
+    font-family: 'Lobster', cursive;
+}
+.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.subs{
+    text-align: center;
+    font-family: monospace;
+}
+#mainb{
+    margin-left: 45%;
+
+}
